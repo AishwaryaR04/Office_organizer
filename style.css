@@ -1,0 +1,174 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fff6f6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 130vh;
+}
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 25px;
+    padding: 15px;
+    background: #dde5ff;
+    border-bottom: 1px solid #ddd;
+}
+  
+.profile {
+    display: flex;
+    align-items: center;
+}
+  
+.profile img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+/* Container */
+.container {
+    width: 400px;
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Header */
+header h2 {
+    text-align: center;
+    color: #333;
+}
+
+/* Conference Section */
+.conference-card {
+    background: #234595;
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    margin: 15px 0;
+}
+
+.conference-card button {
+    background: white;
+    color: hsl(0, 0%, 0%);
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.conference-card button:hover {
+    background: #f1f1f1;
+}
+
+/* Actions */
+.actions {
+    display: flex;
+    justify-content: space-between;
+}
+
+.action-btn {
+    background: #3a7bc1;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    flex: 1;
+    margin: 5px;
+    font-size: 14px;
+}
+
+.action-btn:hover {
+    background: #1c4a7b;
+}
+
+/* Messages */
+.messages {
+    margin-top: 15px;
+}
+
+.message {
+    display: flex;
+    align-items: center;
+    background:#e9ecf8;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 5px 0;
+}
+
+.avatar {
+    width: 35px;
+    height: 35px;
+    background: #579ee5;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+/* Notifications */
+.notifications {
+    margin-top: 15px;
+}
+
+.notification-card {
+    background:#dde5ff;
+    padding: 70px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.notification-card button {
+    background: white;
+    color: #1a0660;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.notification-card button:hover {
+    background: #f1f1f1;
+}
+/* Taskbar Styles */
+.taskbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #2E5AAC;  /* Adjust color as needed */
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.taskbar-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 14px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.taskbar-btn:hover {
+    opacity: 0.8;
+}
+
