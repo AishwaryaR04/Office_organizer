@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meeting Page</title>
+    <link rel="stylesheet" href="meeting.css">
+</head>
+<body>
+
+    <div class="container">
+        <!-- Tab Navigation -->
+        <div class="tabs">
+            <button class="tab-btn active" onclick="openTab('new-meeting')">New Meeting</button>
+            <button class="tab-btn" onclick="openTab('saved-meetings')">Saved Meetings</button>
+        </div>
+
+        <!-- New Meeting Section -->
+        <div id="new-meeting" class="tab-content active">
+            <h2 class="title">Start New Meeting</h2>
+            <p class="subtitle">Safe and secure video & audio conference</p>
+
+            <label class="label">Meeting Title</label>
+            <input type="text" class="input-field" placeholder="Enter meeting title (Optional)">
+
+            <label class="label">Description</label>
+            <textarea class="input-field" placeholder="Describe here..."></textarea>
+
+            <label class="label">Time Zone</label>
+            <select class="input-field">
+                <option>(GMT +11:00) Noumea Time</option>
+                <option>(GMT +05:30) India Time</option>
+                <option>(GMT +00:00) UTC</option>
+            </select>
+
+            <label class="label">Select one (Video or Audio)</label>
+            <div class="options">
+                <label class="radio">
+                    <input type="radio" name="mode" value="video" checked>
+                    <span>Video</span>
+                </label>
+                <label class="radio">
+                    <input type="radio" name="mode" value="audio">
+                    <span>Audio</span>
+                </label>
+            </div>
+
+            <div class="buttons">
+                <button class="cancel-btn">CANCEL</button>
+                <button class="start-btn">START MEETING</button>
+            </div>
+        </div>
+
+        <!-- Saved Meetings Section -->
+        <div id="saved-meetings" class="tab-content">
+            <h2 class="title">Saved Meetings</h2>
+            <p class="subtitle">View your scheduled meetings</p>
+
+            <ul class="meeting-list">
+                <li>📅 Team Sync - 25th Feb, 3:00 PM</li>
+                <li>📅 Client Call - 27th Feb, 5:00 PM</li>
+                <li>📅 Project Discussion - 1st Mar, 10:00 AM</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Taskbar -->
+    <div class="taskbar">
+        <button class="taskbar-btn" onclick="window.location.href='#'">🔔<br>Activity</button>
+        <button class="taskbar-btn" onclick="window.location.href='meeting.html'">📅<br>Meetings</button>
+        <button class="taskbar-btn" onclick="window.location.href='home.html'">🏠<br>Home</button>
+        <button class="taskbar-btn" onclick="window.location.href='chat.html'">💬<br>Chat</button>
+        <button class="taskbar-btn" onclick="window.location.href='#'">⚙️<br>Settings</button>
+    </div>
+
+    <script src="meeting.js"></script>
+
+</body>
+</html>
