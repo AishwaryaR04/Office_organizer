@@ -1,0 +1,139 @@
+/* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f8ff; /* Light Blue */
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 120vh;
+}
+
+/* Settings Container */
+.settings-container {
+    width: 100%;
+    max-width: 600px;
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    background: linear-gradient(135deg, #234595, #234595);
+    color: white;
+}
+
+/* Headings */
+h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+h2 {
+    font-size: 22px;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 5px;
+}
+
+/* Profile Picture */
+.profile-pic-container {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.profile-pic-container img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 3px solid white;
+    object-fit: cover;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.profile-pic-container img:hover {
+    transform: scale(1.1);
+}
+
+/* Input Fields */
+label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: bold;
+    color: white;
+}
+
+input[type="text"], 
+input[type="email"], 
+input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+/* Toggle Switch */
+.toggle-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+input[type="checkbox"] {
+    transform: scale(1.3);
+}
+
+/* Save Button */
+#save-settings {
+    background: #3873cb;
+    color: white;
+    padding: 25px 18px;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+    font-size: 18px;
+    width: 100%;
+    transition: 0.3s;
+    margin-bottom: 40px;
+}
+
+#save-settings:hover {
+    background: #001b3c;
+    transform: scale(1.05);
+}
+
+.taskbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #2E5AAC;  /* Adjust color as needed */
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.taskbar-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 14px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.taskbar-btn:hover {
+    opacity: 0.8;
+}
+
+

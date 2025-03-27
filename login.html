@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Garden Layout Planner - Sign Up</title>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js"></script>
+    
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
         
@@ -22,39 +25,43 @@
             background-repeat: no-repeat;
         }
         .container {
-            background-color: rgba(255, 255, 255, 0); /* Fully Transparent */
+            background-color: rgba(255, 255, 255, 0);
             padding: 30px;
             border-radius: 15px;
             text-align: center;
             width: 70%;
-            max-width: 250px;
+            max-width: 300px;
             color: white;
             box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.4);
             backdrop-filter: blur(10px);
             transition: transform 0.3s ease-in-out;
+            display: grid;
+            gap: 10px;
         }
         .container:hover {
             transform: translateY(-5px);
         }
         h2 {
-            background: linear-gradient(90deg,#223b8b, #576fbe); /* green */
+            background: linear-gradient(90deg,#223b8b, #576fbe);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
         label {
-            background: linear-gradient(90deg, #223b8b, #576fbe); /* Forest Green to Lime Green */
+            background: linear-gradient(90deg, #223b8b, #576fbe);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            font-size: 14px;
         }
         input {
             padding: 12px;
-            border: 2px solid #2e377d; /* Deep Leaf Green */
+            border: 2px solid #2e377d;
             border-radius: 8px;
-            background-color: rgba(232, 245, 233, 0.8); /* Soft Mint with Transparency */
+            background-color: rgba(232, 245, 233, 0.8);
             color: black;
+            width: 100%;
         }
         button {
-            background: linear-gradient(90deg, #223b8b, #576fbe); /* Dark Green to Lime Green */
+            background: linear-gradient(90deg, #223b8b, #576fbe);
             border: none;
             padding: 14px;
             cursor: pointer;
@@ -67,32 +74,76 @@
             background: linear-gradient(90deg, #36498a, #8da0df);
             transform: scale(1.05);
         } 
+        .google-btn {
+            background-color: white;
+            color: rgb(248, 244, 244);
+            border: 2px solid #2e377d;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .google-btn img {
+            width: 20px;
+            height: 20px;
+        }
+        .or-divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin: 10px 0;
+        }
+        .or-divider::before,
+        .or-divider::after {
+            content: "";
+            flex: 1;
+            border-bottom: 1px solid white;
+            margin: 5px;
+        }
     </style>
 </head>
 <body>
-    <div class="container" style="display:grid;">
+    <div class="container">
         <h2>Sign Up</h2>
         
         <label for="username">Username:</label>
-        <br>
         <input type="text" id="username" placeholder="Enter your username">
-        <br>
+        
         <label for="mail">Email:</label>
-        <br>
         <input type="email" id="mail" placeholder="Enter your email">
-        <br>
+        
         <label for="password">Password:</label>
-        <br>
         <input type="password" id="password" placeholder="Enter your password">
-        <br>
-        <button onclick="window.location.href='home.html'"><br>Sign up</button>
+        
+        <button onclick="signup()">Sign up</button>
+
+        <div class="or-divider">OR</div>
+
+        <button class="google-btn" onclick="signInWithGoogle()">
+            <img src="https://i.pinimg.com/736x/bc/6e/d4/bc6ed44a49b2dc1305c2fdc030d5a74f.jpg">
+            Sign in with Google
+        </button>
     </div>
 
     <script>
+        // Firebase Config
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_AUTH_DOMAIN",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_STORAGE_BUCKET",
+            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+
         function signup() {
-            let username = document.getElementById("username").value;
-            let email = document.getElementById("mail").value;
-            let password = document.getElementById("password").value;
+            let username = document.getElementById("username").value.trim();
+            let email = document.getElementById("mail").value.trim();
+            let password = document.getElementById("password").value.trim();
             let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             
             if (!username || !email || !password) {
@@ -104,8 +155,23 @@
                 alert("Please enter a valid email address.");
                 return;
             }
+
+            alert("✅ Sign up successful! Welcome, " + username);
+            window.location.href = 'home.html';
+        }
+
+        function signInWithGoogle() {
+            let provider = new firebase.auth.GoogleAuthProvider();
             
-            alert("Sign up successful! Welcome, " + username);
+            auth.signInWithPopup(provider)
+                .then((result) => {
+                    alert("✅ Google Sign-In Successful! Welcome, " + result.user.displayName);
+                    window.location.href = 'home.html';
+                })
+                .catch((error) => {
+                    console.error("Google Sign-In Error:", error);
+                    alert("❌ Google Sign-In Failed!");
+                });
         }
     </script>
 </body>

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tasks</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        body {
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9fafa;
+            color: white;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 1000px;
+            margin-top: 20px;
+            background-color: #abccec;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .top-bar {
+            background-color: #234595;
+            padding: 15px;
+            text-align: center;
+            font-size: 22px;
+            font-weight: bold;
+            color: white;
+            border-radius: 10px;
+        }
+
+        #addTaskSection {
+            background-color: #6192c5;
+            color: #071025;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+
+        input[type="text"],
+        input[type="date"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin: 5px 0;
+            border: none;
+            border-radius: 8px;
+            background-color: #dde8f5;
+        }
+
+        button {
+            background-color: #1e366d;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            margin-top: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #007FFF;
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            background-color: #ddd;
+            border-radius: 20px;
+            overflow: hidden;
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+
+
+        .progress-bar {
+            height: 30px;
+            width: 0%;
+            background-color: #4CAF50;
+            text-align: center;
+            line-height: 30px;
+            color: white;
+            border-radius: 20px;
+        }
+
+        .task-category {
+            background-color: #033b74;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            background-color: #012e61;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 8px;
+            color: white;
+        }
+
+        .completed {
+            text-decoration: line-through;
+            color: #018cae;
+        }
+
+        .overdue {
+            color: #ee9c9c;
+        }
+        
+        .taskbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #2E5AAC;  /* Adjust color as needed */
+    display: flex;
+    justify-content: space-around;
+    padding: 5px 0;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.taskbar-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 14px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.taskbar-btn:hover {
+    opacity: 0.8;
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="top-bar">TaskFlow</div>
+
+        <div id="addTaskSection">
+            <h2>Add Task</h2>
+            <input type="text" id="taskInput" placeholder="Enter task description" />
+            <input type="date" id="taskDeadline" />
+            <button onclick="addTask()">Add</button>
+        </div>
+
+        <div class="progress-bar-container">
+            <div class="progress-bar" id="progressBar">
+                <span id="progressText">0% Completed</span>
+            </div>
+        </div>
+
+        <div class="task-scroll">
+            <section class="task-category" id="allTasksSection">
+                <h2>All Tasks</h2>
+                <ul id="allTasks"></ul>
+            </section>
+
+            <section class="task-category" id="dueTasksSection">
+                <h2>Due Tasks</h2>
+                <ul id="dueTasks"></ul>
+            </section>
+
+            <section class="task-category" id="overdueTasksSection">
+                <h2>Overdue Tasks</h2>
+                <ul id="overdueTasks"></ul>
+            </section>
+
+            <section class="task-category" id="completedTasksSection">
+                <h2>Completed Tasks</h2>
+                <ul id="completedTasks"></ul>
+            </section>
+        </div>
+
+        <div class="taskbar">
+            <button class="taskbar-btn" onclick="window.location.href='tasks.html'">🔔<br>tasks</button>
+            <button class="taskbar-btn" onclick="window.location.href='meeting.html'">📅<br>Meetings</button>
+            <button class="taskbar-btn" onclick="window.location.href='home.html'">🏠<br>Home</button>
+            <button class="taskbar-btn" onclick="window.location.href='chats.html'">💬<br>Chat</button>
+            <button class="taskbar-btn" onclick="window.location.href='settings.html'">⚙<br>Settings</button>
+        </div>
+
+        <script>
+            let tasks = [];
+
+            function addTask() {
+    const taskInput = document.getElementById('taskInput');
+    const taskDeadline = document.getElementById('taskDeadline');
+    const taskText = taskInput.value.trim();
+    const deadline = taskDeadline.value;
+
+    if (taskText === '') return;
+
+    const task = {
+        id: Date.now(),
+        text: taskText,
+        deadline: deadline,
+        completed: false
+    };
+
+    tasks.push(task);
+    saveTasks(); // Save tasks
+    taskInput.value = '';
+    taskDeadline.value = '';
+    renderTasks();
+    updateProgressBar();
+}
+
+
+function toggleComplete(id) {
+    tasks = tasks.map(task =>
+        task.id === id ? { ...task, completed: !task.completed } : task
+    );
+    saveTasks(); // Save tasks
+    renderTasks();
+    updateProgressBar();
+}
+
+
+function renderTasks() {
+    const categories = {
+        allTasks: tasks,
+        dueTasks: tasks.filter(task => !task.completed && new Date(task.deadline) >= new Date()),
+        overdueTasks: tasks.filter(task => !task.completed && new Date(task.deadline) < new Date()),
+        completedTasks: tasks.filter(task => task.completed)
+    };
+
+    Object.keys(categories).forEach(category => {
+        const taskList = document.getElementById(category);
+        taskList.innerHTML = '';
+        categories[category].forEach(task => {
+            const li = document.createElement('li');
+            li.innerHTML = `
+                <input type="checkbox" ${task.completed ? 'checked' : ''} onclick="toggleComplete(${task.id})" />
+                <span class="${task.completed ? 'completed' : (new Date(task.deadline) < new Date() ? 'overdue' : '')}">${task.text} (Due: ${task.deadline})</span>
+                <button class="delete-btn" onclick="deleteTask(${task.id})">Delete</button>
+            `;
+            taskList.appendChild(li);
+        });
+    });
+}
+
+            function updateProgressBar() {
+                const completedTasks = tasks.filter(task => task.completed).length;
+                const totalTasks = tasks.length;
+                const progressPercentage = totalTasks ? Math.round((completedTasks / totalTasks) * 100) : 0;
+
+                const progressBar = document.getElementById('progressBar');
+                const progressText = document.getElementById('progressText');
+                progressBar.style.width = `${progressPercentage}%`;
+                progressText.textContent = `${progressPercentage}% Completed`;
+            }
+            function saveTasks() {
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+}
+
+function loadTasks() {
+    try {
+        const savedTasks = localStorage.getItem('tasks');
+        if (savedTasks) {
+            tasks = JSON.parse(savedTasks);
+            renderTasks();
+            updateProgressBar();
+            console.log('Tasks loaded successfully:', tasks);
+        }
+    } catch (error) {
+        console.error('Error loading tasks:', error);
+    }
+}
+function deleteTask(id) {
+    tasks = tasks.filter(task => task.id !== id);
+    saveTasks();
+    renderTasks();
+    updateProgressBar();
+}
+
+
+
+// Call on page load
+document.addEventListener('DOMContentLoaded', loadTasks);
+
+        </script>
+    </div>
+</body>
+</html>

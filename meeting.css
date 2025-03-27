@@ -112,15 +112,17 @@ textarea {
     background: #234595;
     color: white;
 }
+
 .start-btn:hover {
     opacity: 0.8;
 }
+
 .taskbar {
     position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
-    background: #2E5AAC;  /* Adjust color as needed */
+    background: #2E5AAC;  
     display: flex;
     justify-content: space-around;
     padding: 10px 0;

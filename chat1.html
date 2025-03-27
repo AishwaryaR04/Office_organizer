@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chat Room</title>
+  <link rel="stylesheet" href="chats1.css" />
+  <script defer src="chat1.js"></script>
+</head>
+<body>
+  <div class="chat-container">
+    <header class="chat-header">
+      <button onclick="goBack()">⬅</button>
+      <h2 id="chatName">Chat</h2>
+    </header>
+
+    <div class="chat-messages" id="chatMessages"></div>
+
+    <div class="chat-input">
+      <input type="text" id="messageInput" placeholder="Type a message..." />
+      <button onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+
+  <script>
+    function goBack() {
+      window.history.back();
+    }
+
+    function getChatName() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const name = urlParams.get('name') || 'Chat';
+      document.getElementById('chatName').textContent = name;
+    }
+
+    function sendMessage() {
+      const input = document.getElementById('messageInput');
+      const messageText = input.value.trim();
+      if (!messageText) return;
+
+      const messageContainer = document.getElementById('chatMessages');
+      const messageElement = document.createElement('div');
+      messageElement.className = 'message sent';
+      messageElement.textContent = messageText;
+      messageContainer.appendChild(messageElement);
+      input.value = '';
+      messageContainer.scrollTop = messageContainer.scrollHeight;
+    }
+
+    // Load chat name on page load
+    window.onload = getChatName;
+  </script>
+</body>
+</html>

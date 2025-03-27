@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Office Organizer</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="home.css">
 </head>
 <body>
     <div class="container">
@@ -28,7 +28,8 @@
         </section>
         
         <section class="actions">
-            <button class="action-btn">Add Meeting</button>
+            
+            <button class="action-btn" onclick="window.location.href='meeting.html'">Add Meeting</button>
             <button class="action-btn">Add task</button>
         </section>
         
@@ -53,14 +54,14 @@
             </div>
         </section>
     </div>
-    <script src="script.js"></script>
+    <script src="home.js"></script>
 </body>
 <footer class="taskbar">
-    <button class="taskbar-btn" onclick="window.location.href='#'">🔔<br>Activity</button>
+    <button class="taskbar-btn" onclick="window.location.href='tasks.html'">🔔<br>tasks</button>
     <button class="taskbar-btn" onclick="window.location.href='meeting.html'">📅<br>Meetings</button>
     <button class="taskbar-btn" onclick="window.location.href='home.html'">🏠<br>Home</button>
-    <button class="taskbar-btn" onclick="window.location.href='chat.html'">💬<br>Chat</button>
-    <button class="taskbar-btn" onclick="window.location.href='#'">⚙️<br>Settings</button>
+    <button class="taskbar-btn" onclick="window.location.href='chats.html'">💬<br>Chat</button>
+    <button class="taskbar-btn" onclick="window.location.href='settings.html'">⚙️<br>Settings</button>
     
 </footer>
 </html>

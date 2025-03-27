@@ -22,3 +22,19 @@ document.querySelectorAll(".taskbar-btn").forEach(button => {
         alert(`Opening: ${button.innerText.trim()}`);
     });
 });
+document.addEventListener("DOMContentLoaded", () => {
+    const savedSettings = JSON.parse(localStorage.getItem("userSettings"));
+  
+    if (savedSettings) {
+      // Update Profile Picture
+      const profileImg = document.querySelector(".profile img");
+      if (savedSettings.profilePic) {
+        profileImg.src = savedSettings.profilePic;
+      }
+  
+      // Update Username
+      const usernameElement = document.querySelector(".user-info h2");
+      usernameElement.textContent = `Hi, ${savedSettings.username || 'User'}`;
+    }
+  });
+  

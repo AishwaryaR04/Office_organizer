@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chat List</title>
+  <link rel="stylesheet" href="chat.css" />
+  <script defer src="chat.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #c3ecff, #92caff);
+      color: #333;
+      overflow: hidden;
+    }
+
+    /* Bubble Background */
+    body::before {
+      content: "";
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: url('https://www.transparenttextures.com/patterns/bubbles.png');
+      opacity: 0.3;
+      z-index: -1;
+    }
+
+    .chat-list-container {
+     max-width: 500px;
+     height: 650px;
+    margin: auto;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Header */
+    .chat-header {
+      background: #3a7bc1;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      font-size: 24px;
+      font-weight: 600;
+    }
+
+    /* Chat List */
+    .chat-list {
+      max-height: 650px;
+      overflow-y: auto;
+      background: #fff;
+    }
+
+    .chat-item {
+      display: flex;
+      align-items: center;
+      padding: 16px;
+      border-bottom: 1px solid #f0f0f0;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    .chat-item:hover {
+      background: #eaf6ff;
+      transform: scale(1.02);
+    }
+
+    .profile-pic, .avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      margin-right: 15px;
+      object-fit: cover;
+      background-color: #3a7bc1;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    .chat-info h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: #333;
+    }
+
+    .last-message {
+      font-size: 14px;
+      color: #777;
+    }
+
+    .chat-date {
+      font-size: 12px;
+      color: #aaa;
+    }
+
+    /* Floating Button */
+    .new-chat-btn {
+      position: fixed;
+      bottom: 80px;
+      right: 20px;
+      background-color: #3a7bc1;
+      color: white;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      font-size: 28px;
+      border: none;
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .new-chat-btn:hover {
+      background-color: #0056b3;
+      transform: rotate(90deg);
+    }
+
+    /* Taskbar */
+    .taskbar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: #3a7bc1;
+      display: flex;
+      justify-content: space-around;
+      padding: 15px 0;
+    }
+
+    .taskbar-btn {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 14px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .taskbar-btn:hover {
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="chat-list-container">
+    <header class="chat-header">Chats</header>
+
+    <div class="chat-item" onclick="openChat('Sneha Mohana')">
+      <img src="https://d28wu8o6itv89t.cloudfront.net/images/RoshniNadarjpg-1709202883648.jpeg" alt="Profile" class="profile-pic" />
+      <div class="chat-info">
+        <h3>Sneha Mohana</h3>
+        <p class="last-message">You: Hi sir, this is Pavi mo...</p>
+      </div>
+      <span class="chat-date">Monday</span>
+    </div>
+    
+    <script>
+      function openChat(name) {
+        window.location.href = `chat1.html?name=${encodeURIComponent(name)}`;
+      }
+    </script>
+
+
+      <div class="chat-item">
+        <div class="avatar">RK</div>
+        <div class="chat-info">
+          <h3>Ram Kumar K</h3>
+          <p class="last-message">Hey, the meeting starts at...</p>
+        </div>
+        <span class="chat-date">07/02</span>
+      </div>
+
+      <div class="chat-item">
+        <div class="avatar">AB</div>
+        <div class="chat-info">
+          <h3>Anjali B</h3>
+          <p class="last-message">See you at the cafe!</p>
+        </div>
+        <span class="chat-date">Yesterday</span>
+      </div>
+
+      <div class="chat-item">
+        <div class="avatar">MJ</div>
+        <div class="chat-info">
+          <h3>Manoj J</h3>
+          <p class="last-message">Don't forget the report.</p>
+        </div>
+        <span class="chat-date">Today</span>
+      </div>
+
+      <div class="chat-item">
+        <div class="avatar">LS</div>
+        <div class="chat-info">
+          <h3>Leena S</h3>
+          <p class="last-message">Call me when free.</p>
+        </div>
+        <span class="chat-date">10/03</span>
+      </div>
+
+      <div class="chat-item">
+        <div class="avatar">JP</div>
+        <div class="chat-info">
+          <h3>Joseph P</h3>
+          <p class="last-message">Meeting rescheduled to 5 PM.</p>
+        </div>
+        <span class="chat-date">09/03</span>
+      </div>
+    </section>
+
+    <button class="new-chat-btn" onclick="startNewChat()">+</button>
+
+    <div class="taskbar">
+      <button class="taskbar-btn" onclick="window.location.href='tasks.html'">🔔<br>Tasks</button>
+      <button class="taskbar-btn" onclick="window.location.href='meeting.html'">📅<br>Meetings</button>
+      <button class="taskbar-btn" onclick="window.location.href='home.html'">🏠<br>Home</button>
+      <button class="taskbar-btn" onclick="window.location.href='chats.html'">💬<br>Chat</button>
+      <button class="taskbar-btn" onclick="window.location.href='settings.html'">⚙️<br>Settings</button>
+    </div>
+  </div>
+
+  <script>
+    function startNewChat() {
+      alert('Starting a new chat!');
+    }
+  </script>
+
+</body>
+</html>

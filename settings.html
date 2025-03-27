@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - Office Organizer</title>
+    <link rel="stylesheet" href="settings.css">
+</head>
+<body>
+    <div class="settings-container">
+        <h1>⚙️ Settings</h1>
+
+        <section class="profile-settings">
+            <h2>👤 Profile Settings</h2>
+            <div class="profile-pic-container">
+                <label for="profile-pic">
+                    <img src="https://i.pinimg.com/736x/49/df/88/49df8872f1c36fcbab57e4c56a12a032.jpg" id="profile-img" alt="Profile Picture">
+                </label>
+                <input type="file" id="profile-pic">
+            </div>
+
+            <label for="username">Name:</label>
+            <input type="text" id="username" value="Linda">
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" value="linda@example.com">
+        </section>
+
+        <section class="notification-settings">
+            <h2>🔔 Notification Settings</h2>
+            <div class="toggle-group">
+                <label for="email-notifications">Email Notifications:</label>
+                <input type="checkbox" id="email-notifications" checked>
+            </div>
+
+            <div class="toggle-group">
+                <label for="push-notifications">Push Notifications:</label>
+                <input type="checkbox" id="push-notifications">
+            </div>
+        </section>
+
+        <section class="theme-settings">
+            <h2>🎨 Theme Settings</h2>
+            <div class="toggle-group">
+                <label for="dark-mode">Dark Mode:</label>
+                <input type="checkbox" id="dark-mode">
+            </div>
+        </section>
+
+        <button id="save-settings">💾 Save Changes</button>
+    </div>
+
+    <script src="settings.js"></script>
+
+
+
+    <div class="taskbar">
+        <button class="taskbar-btn" onclick="window.location.href='tasks.html'">🔔<br>Tasks</button>
+    <button class="taskbar-btn" onclick="window.location.href='meeting.html'">📅<br>Meetings</button>
+    <button class="taskbar-btn" onclick="window.location.href='home.html'">🏠<br>Home</button>
+    <button class="taskbar-btn" onclick="window.location.href='chats.html'">💬<br>Chat</button>
+    <button class="taskbar-btn" onclick="window.location.href='settings.html'">⚙️<br>Settings</button>
+    </div>
+</body>
+</html>
