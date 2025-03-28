@@ -131,28 +131,29 @@
 
     /* Taskbar */
     .taskbar {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      background: #3a7bc1;
-      display: flex;
-      justify-content: space-around;
-      padding: 15px 0;
-    }
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #2E5AAC;  
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
 
-    .taskbar-btn {
-      background: none;
-      border: none;
-      color: white;
-      font-size: 14px;
-      cursor: pointer;
-      transition: transform 0.2s;
-    }
+.taskbar-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 14px;
+    text-align: center;
+    cursor: pointer;
+}
 
-    .taskbar-btn:hover {
-      transform: scale(1.1);
-    }
+.taskbar-btn:hover {
+    opacity: 0.8;
+}
   </style>
 </head>
 <body>

@@ -125,8 +125,9 @@
     background: #2E5AAC;  /* Adjust color as needed */
     display: flex;
     justify-content: space-around;
-    padding: 5px 0;
+    padding: 0,5px 0;
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    
 }
 
 .taskbar-btn {
@@ -141,6 +142,7 @@
 .taskbar-btn:hover {
     opacity: 0.8;
 }
+
     </style>
 </head>
 <body>
@@ -154,8 +156,12 @@
             <button onclick="addTask()">Add</button>
         </div>
 
+        <h2 style="color: #033b74;">Progress</h2>
+
         <div class="progress-bar-container">
+        
             <div class="progress-bar" id="progressBar">
+                
                 <span id="progressText">0% Completed</span>
             </div>
         </div>
